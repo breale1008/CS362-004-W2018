@@ -1,0 +1,36 @@
+Issue:	Council room card causes current player to draw +1 more card than expected
+Details/steps to reproduce:
+•	Create a scenario in which the council room card is played
+•	Observe the number of cards in the current player’s hand before and after the card is played
+
+The responsible code appears to be this section:
+	//Each other player draws a card
+	for (i = 0; i < state->numPlayers; i++)
+	{
+		//if ( i != currentPlayer )
+		{
+			drawCard(i, state);
+		}
+	}
+
+Issue: 	Smithy card only draws 2 cards
+Details/steps to reproduce:
+•	Create a scenario in which the smithy card is played
+•	Observe that only 2 cards are drawn (expected 3)
+
+The responsible code appears to be this section:
+	//+3 Cards
+	//for (i = 0; i < 3; i++)
+	for (i = 0; i < 2; i++)
+	{
+		drawCard(currentPlayer, state);
+	}
+
+Issue: 	Village card does not generate a drawn card
+Details/steps to reproduce:
+•	Create a scenario in which the village card is played
+•	Observe that the player does not draw a card (expected that they would)
+
+The responsible code appears to be this section:
+      //+1 Card
+      //drawCard(currentPlayer, state);
